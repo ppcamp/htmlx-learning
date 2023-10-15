@@ -7,7 +7,11 @@ import (
 )
 
 func ServerPort() string {
-	return ":" + viper.GetString("server.port")
+	return viper.GetString("server.port")
+}
+
+func ServerAddr() string {
+	return ":" + ServerPort()
 }
 
 func WaitTimeout() time.Duration {
