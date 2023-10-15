@@ -7,3 +7,7 @@ import (
 func TemplatesPath() string {
 	return viper.GetString("templates.path")
 }
+
+func TemplateCaching() bool {
+	return viper.GetBool("templates.cache")
+}

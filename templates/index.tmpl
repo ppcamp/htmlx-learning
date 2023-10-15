@@ -6,28 +6,16 @@
 
 {{define "content"}}
 <div class="container m-3">
-    <h1>Todo</h1>
-    <ol>
-        <li>Allow user to bookmark a video (card)</li>
-        <li>List bookmarked videos</li>
-        <li>Search in current videos</li>
-        <li>Add authentication</li>
-        <li>
-            List videos
-            <ol>
-                <li>Use "load more" button + htmlx</li>
-                <li>Use some folder in computer to list all video files</li>
-                <li>Create preview using ffmpeg for each video</li>
-                <li>Use ffmpeg to create thumbnails</li>
-                <li>Cache those preprocess ffmpeg</li>
-            </ol>
-        </li>
-    </ol>
-    <h1>Videos</h1>
-    <ul>
-        {{range .Videos}}
-        <li><a href="/watch/{{.ID}}">{{.Title}}</a></li>
-        {{end}}
-    </ul>
+    <div id="content"></div>
+    <div class="container">
+        <button class='btn' hx-get="/todos" hx-target="#content" hx-swap="outerHTML">
+            Load Todos <img class="htmx-indicator" width="100px"
+                src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif">
+        </button>
+
+        <button class='btn' hx-get="/videos" hx-target="#content" hx-swap="outerHTML">
+            Load Todos <img class="htmx-indicator" src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif">
+        </button>
+    </div>
 </div>
 {{end}}

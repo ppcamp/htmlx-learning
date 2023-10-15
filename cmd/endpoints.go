@@ -1,15 +1,11 @@
 package main
 
 import (
-	"html/template"
-	"os"
-	"path/filepath"
-
 	"github.com/gin-gonic/contrib/gzip"
 	"github.com/gin-gonic/gin"
 	"github.com/ppcamp/htmlx-movies-to-watch/config"
 	"github.com/ppcamp/htmlx-movies-to-watch/handlers"
-	"github.com/ppcamp/htmlx-movies-to-watch/utils/templ"
+	"github.com/ppcamp/htmlx-movies-to-watch/utils/tmpl"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -33,7 +29,11 @@ func routes(m *gin.Engine) {
 
 	m.GET("/", handlers.Index)
 	m.GET("/bookmarks", handlers.Bookmarks)
+	m.GET("/watch", handlers.Watch)
 	m.GET("/search", handlers.Search)
+	m.GET("/todos", handlers.Todos)
+
+	m.GET("/videos", handlers.Videos)
 }
 
 func middlewares(m *gin.Engine) {
@@ -44,34 +44,6 @@ func middlewares(m *gin.Engine) {
 }
 
 func templates(m *gin.Engine) error {
-	log.Info("Configuring templates")
-	tmpl, err := glob(config.TemplatesPath())
-	if err != nil {
-		return err
-	}
-	html := template.Must(template.ParseFiles(tmpl...))
-	m.SetHTMLTemplate(html)
-
-	m.FuncMap = templ.FunctionMap()
+	m.HTMLRender = tmpl.NewCustomRender()
 	return nil
-}
-
-// glob returns all the templates files in the templates folder.
-// We need this because the filepath subdirectory glob (**/*.tmpl) only works if we don't pass the
-// prefix folder (templates/**/*.tmpl), otherwise, it returns only the files under subdirectories.
-//
-// This function is a workaround to match all files.
-func glob(p string) ([]string, error) {
-	tmpl := make([]string, 0, 10)
-	err := filepath.Walk(p, func(path string, info os.FileInfo, err error) error {
-		if !info.IsDir() && filepath.Ext(path) == ".tmpl" {
-			log.Debug("Loading template: ", path)
-			tmpl = append(tmpl, path)
-		}
-		return err
-	})
-	if err != nil {
-		return nil, err
-	}
-	return tmpl, nil
 }
