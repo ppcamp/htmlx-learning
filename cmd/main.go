@@ -28,7 +28,7 @@ func main() {
 
 	mux := gin.Default()
 	if err := configureServer(mux); err != nil {
-		log.WithError(err).Fatal("Fail to register handlers")
+		log.WithError(err).Fatal("Fail to configure server")
 	}
 
 	s := &http.Server{
