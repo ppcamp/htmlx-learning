@@ -27,17 +27,24 @@ func configureServer(m *gin.Engine) error {
 }
 
 func routes(m *gin.Engine) {
+	log.Info("Configuring routes")
+
 	m.Static("/assets", "./"+config.StaticFolder())
+
 	m.GET("/", handlers.Index)
+	m.GET("/bookmarks", handlers.Bookmarks)
+	m.GET("/search", handlers.Search)
 }
 
 func middlewares(m *gin.Engine) {
+	log.Info("Configuring middlewares")
 	m.Use(gin.Logger())
 	m.Use(gin.Recovery())
 	m.Use(gzip.Gzip(gzip.BestCompression))
 }
 
 func templates(m *gin.Engine) error {
+	log.Info("Configuring templates")
 	tmpl, err := glob(config.TemplatesPath())
 	if err != nil {
 		return err

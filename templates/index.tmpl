@@ -1,13 +1,16 @@
 {{template "layout"}}
 
 {{define "title"}}
-    <title>Home</title>
+<title>Home</title>
 {{end}}
 
 {{define "content"}}
-    <div class="container">
-        <h1 class="text-3xl font-bold underline text-clifford">
-            Hello world!
-        </h1>
-    </div>
+<div class="container m-3">
+    <h1>Videos</h1>
+    <ul>
+        {{range .Videos}}
+        <li><a href="/watch/{{.ID}}">{{.Title}}</a></li>
+        {{end}}
+    </ul>
+</div>
 {{end}}
