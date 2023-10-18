@@ -25,5 +25,5 @@ func Todos(c *gin.Context) {
 }
 
 func Videos(c *gin.Context) {
-	c.HTML(200, "htmlx/index/todos.tmpl", "")
+	c.HTML(200, "htmlx/index/videos.tmpl", "")
 }

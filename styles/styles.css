@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* colors: https://getbootstrap.com/docs/5.3/customize/color/ */
+.navbar {
+    background-color: var(--bs-dark-bg-subtle);
+    /* border-radius: 1rem; */
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--bs-dark-bg-subtle);
+    text-align: center;
+}
