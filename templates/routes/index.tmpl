@@ -1,0 +1,27 @@
+{{template "layout"}}
+
+{{define "title"}}
+<title>Home</title>
+{{end}}
+
+
+{{define "content"}}
+<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 container">
+
+    {{template "htmlx/todos"}}
+
+    <hr class="my-10 border-t-4"/>
+
+    <div id="content" class="flex flex-wrap gap-1 justify-between">
+    </div>
+
+    <div class="container">
+        <button class='btn' hx-get="/htmlx/videos" hx-target="#content" hx-swap="afterbegin">
+            Load More videos <img class="htmx-indicator" width="100px"
+                src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif">
+        </button>
+
+        {{template "components/button"}}
+    </div>
+</div>
+{{end}}

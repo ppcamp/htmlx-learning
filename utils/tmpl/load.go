@@ -18,17 +18,19 @@ const (
 func load(tmpl string, layout ...string) (*template.Template, error) {
 	log.Debug("Loading template: ", tmpl)
 
-	basefile := config.TemplatesPath() + "/" + tmpl
+	withPath := config.TemplatesPath() + "/" + tmpl
 
-	loadFiles := []string{basefile}
+	loadFiles := []string{withPath}
 	loadFiles = append(loadFiles, layout...)
 
-	html, err := template.ParseFiles(loadFiles...)
-	if err != nil {
-		return nil, err
-	}
+	log.Debug("Curr: ", withPath)
+	log.Debug("Layout files: ", layout)
 
-	return html.Funcs(functionMap), nil
+	t := template.New(tmpl).Funcs(functionMap)
+
+	log.Info(functionMap)
+
+	return t.ParseFiles(loadFiles...)
 }
 
 func LoadSingle(tmpl string) (*template.Template, error) {

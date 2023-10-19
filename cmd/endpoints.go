@@ -32,8 +32,11 @@ func routes(m *gin.Engine) {
 	m.GET("/watch", handlers.Watch)
 	m.GET("/search", handlers.Search)
 	m.GET("/todos", handlers.Todos)
-
 	m.GET("/videos", handlers.Videos)
+
+	htmlx := m.Group("/htmlx")
+	htmlx.GET("/videos", handlers.HtmlxVideos)
+
 }
 
 func middlewares(m *gin.Engine) {

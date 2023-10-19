@@ -1,15 +1,19 @@
 package tmpl
 
 import (
+	"fmt"
 	"html/template"
 	"io"
+	"strings"
 
 	"github.com/ppcamp/htmlx-movies-to-watch/config"
 	log "github.com/sirupsen/logrus"
 )
 
 func render(tmpl string, data any, wr io.Writer) error {
-	log.Debug("Rendering template: ", tmpl)
+	stripped := tmpl[strings.LastIndex(tmpl, "/")+1:]
+
+	log.Info("Rendering template: ", stripped)
 
 	var html *template.Template
 	var err error
@@ -22,5 +26,9 @@ func render(tmpl string, data any, wr io.Writer) error {
 		}
 	}
 
-	return html.Execute(wr, data)
+	for _, v := range html.Templates() {
+		fmt.Println(v.Name())
+	}
+
+	return html.ExecuteTemplate(wr, stripped, data)
 }
