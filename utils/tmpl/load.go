@@ -11,8 +11,9 @@ import (
 )
 
 const (
-	FileSuffix   = ".tmpl"
-	LayoutSuffix = "layout.tmpl"
+	FileSuffix      = ".tmpl"
+	LayoutSuffix    = "layout.tmpl"
+	ComponentSuffix = "component.tmpl"
 )
 
 func load(tmpl string, layout ...string) (*template.Template, error) {
@@ -34,7 +35,7 @@ func load(tmpl string, layout ...string) (*template.Template, error) {
 }
 
 func LoadSingle(tmpl string) (*template.Template, error) {
-	layout, err := files.GlobSuffix(config.TemplatesPath(), LayoutSuffix)
+	layout, err := files.GlobSuffix(config.TemplatesPath(), LayoutSuffix, ComponentSuffix)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +46,7 @@ func LoadSingle(tmpl string) (*template.Template, error) {
 func LoadMultiple(m *gin.Engine) (map[string]*template.Template, error) {
 	tmpls := make(map[string]*template.Template)
 
-	layout, err := files.GlobSuffix(config.TemplatesPath(), LayoutSuffix)
+	layout, err := files.GlobSuffix(config.TemplatesPath(), LayoutSuffix, ComponentSuffix)
 	if err != nil {
 		return nil, err
 	}

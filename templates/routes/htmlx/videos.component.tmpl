@@ -1,0 +1,8 @@
+{{block "htmlx/videos" .}}
+    {{ $arr := until 3 }}
+    {{ range $arr }}
+    <div class="py-3">
+        {{template "components/card" .}}
+    </div>
+    {{ end }}
+{{end}}
