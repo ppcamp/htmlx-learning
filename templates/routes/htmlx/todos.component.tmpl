@@ -1,22 +1,21 @@
 {{block "htmlx/todos" .}}
-    <div class="container m-5">
-        <h1>Todo</h1>
-        <ol>
+    <div class="container m-5 text-gray-700">
+        <h2 class="mb-2 text-lg font-semibold">Todos</h2>
+        <ol class="space-y-4 0 list-decimal list-inside ">
             <li>Allow user to bookmark a video (card)</li>
             <li>List bookmarked videos</li>
             <li>Search in current videos</li>
             <li>Add authentication</li>
             <li>
                 List videos
-                <ol>
+                <ul class="pl-5 mt-2 space-y-1 list-disc list-inside">
                     <li>Use "load more" button + htmlx</li>
                     <li>Use some folder in computer to list all video files</li>
                     <li>Create preview using ffmpeg for each video</li>
                     <li>Use ffmpeg to create thumbnails</li>
                     <li>Cache those preprocess ffmpeg</li>
-                </ol>
+                </ul>
             </li>
         </ol>
     </div>
-    <br />
 {{end}}
