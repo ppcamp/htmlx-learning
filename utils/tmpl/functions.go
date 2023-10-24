@@ -1,7 +1,7 @@
 package tmpl
 
 import (
-	"text/template"
+	"html/template"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -21,12 +21,17 @@ var functionMap = template.FuncMap{
 		}
 		return f
 	},
-
 	"map": func(args ...any) map[string]any {
 		dict := make(map[string]any)
 		for i := 0; i < len(args); i += 2 {
 			dict[args[i].(string)] = args[i+1]
 		}
 		return dict
+	},
+	"attr": func(s string) template.HTMLAttr {
+		return template.HTMLAttr(s)
+	},
+	"safe": func(s string) template.HTML {
+		return template.HTML(s)
 	},
 }

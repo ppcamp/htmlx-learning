@@ -15,13 +15,14 @@
     <div id="content" class="flex flex-wrap gap-1 justify-evenly w-full">
     </div>
 
-    <div class="container">
-        <button class='btn' hx-get="/htmlx/videos" hx-target="#content" hx-swap="afterbegin">
-            Load More videos <img class="htmx-indicator" width="100px"
-                src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif">
-        </button>
 
-        {{template "components/button/common" map "label" "LL" "icon" "a"}}
+    <div class="container w-96">
+        {{template "components/button/common" map
+            "class" "btn"
+            "label" "Load More videos"
+            "icon" "a"
+            "htmlx" `hx-get="/htmlx/videos"  hx-target="#content" hx-swap="afterbegin"`
+        }}
     </div>
 </div>
 {{end}}
