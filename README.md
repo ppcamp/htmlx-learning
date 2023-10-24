@@ -3,7 +3,7 @@
 > After some long hours working on the Go template and htmlx approach, I've decided that this is
 > not feasible, it's really painfull and definitely not a good experience to average/common developer.
 > Perhaps, when using some JSX tool before (gox), it could be, but since it wasn't
-> the idea for this repo, I'm setting this as achieve and giving up from using this. Definitely it'll be
+> the idea for this repo, I'm setting this as archive and giving up from using this. Definitely it'll be
 > much more easier if you go to Sveltekit. Yet, I'm keeping this repo so anyone can see how much effort you'll
 > need to build something pretty simple. 😅
 
