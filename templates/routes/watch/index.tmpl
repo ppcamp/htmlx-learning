@@ -5,17 +5,14 @@
 {{end}}
 
 {{define "content"}}
-    {{ $videoID := .id }}
-    {{ $videoURL := printf "https://www.youtube.com/embed/%s" $videoID }}
-    <div class="max-w-screen-xl h-auto flex flex-wrap items-center justify-between mx-auto p-4">
-        <iframe
-            height="720px"
-            width="100%"
-            src="{{$videoURL}}"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-        </iframe>
-    </div>
+
+{{ $videoID := .id }}
+{{ $videoURL := printf "https://www.youtube.com/embed/%s" $videoID }}
+<div class="max-w-screen-xl h-auto flex flex-wrap items-center justify-between mx-auto p-4">
+    <iframe height="720px" width="100%" src="{{$videoURL}}" title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+    </iframe>
+</div>
+
 {{end}}
