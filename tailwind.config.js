@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./templates/**/*.{html,tmpl}"],
+    // if you use content, it'll miss some tailwind classes (use "purge" instead)
+    content: ["./templates/**/*.{html,tmpl}",],
+    mode: "jit",
     theme: {
         extend: {},
     },

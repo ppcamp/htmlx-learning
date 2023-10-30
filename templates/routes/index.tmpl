@@ -10,14 +10,16 @@
 
     {{template "htmlx/todos"}}
 
-    <hr class="my-10 border-t-4"/>
+    <div class="inline-flex items-center justify-center w-full">
+        <hr class="w-full h-px my-8 bg-gray-900 border-0 ">
+        <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2">
+            Content
+        </span>
+    </div>
 
     <div id="content" class="flex flex-wrap gap-1 justify-evenly w-full">
         {{template "htmlx/videos"}}
-
     </div>
-
-
     <div class="container w-96">
         <button
             type="button"
