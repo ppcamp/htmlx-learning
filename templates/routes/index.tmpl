@@ -1,4 +1,4 @@
-{{template "layout"}}
+{{template "layout" .}}
 
 {{define "title"}}
 <title>Home</title>
@@ -13,16 +13,24 @@
     <hr class="my-10 border-t-4"/>
 
     <div id="content" class="flex flex-wrap gap-1 justify-evenly w-full">
+        {{template "htmlx/videos"}}
+
     </div>
 
 
     <div class="container w-96">
-        {{template "components/button/common" map
-            "class" "btn"
-            "label" "Load More videos"
-            "icon" "a"
-            "htmlx" `hx-get="/htmlx/videos"  hx-target="#content" hx-swap="afterbegin"`
-        }}
+        <button
+            type="button"
+            class="button-common"
+            hx-get="/htmlx/videos"
+            hx-target="#content"
+            hx-swap="beforeend"
+        >
+            {{template "components/loader" map "boxCSS" "htmx-indicator" "loadCSS" "w-4 h-4"}}
+            <span class="btn-label-loader">
+                Load more
+            </span>
+        </button>
     </div>
 </div>
 {{end}}

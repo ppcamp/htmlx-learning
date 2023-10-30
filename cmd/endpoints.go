@@ -28,15 +28,10 @@ func routes(m *gin.Engine) {
 	m.Static("/assets", "./"+config.StaticFolder())
 
 	m.GET("/", handlers.Index)
-	m.GET("/bookmarks", handlers.Bookmarks)
-	m.GET("/watch", handlers.Watch)
-	m.GET("/search", handlers.Search)
-	m.GET("/todos", handlers.Todos)
-	m.GET("/videos", handlers.Videos)
+	m.GET("/watch/:video", handlers.Watch)
 
 	htmlx := m.Group("/htmlx")
 	htmlx.GET("/videos", handlers.HtmlxVideos)
-
 }
 
 func middlewares(m *gin.Engine) {

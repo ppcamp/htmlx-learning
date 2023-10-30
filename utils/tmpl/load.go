@@ -29,8 +29,6 @@ func load(tmpl string, layout ...string) (*template.Template, error) {
 
 	t := template.New(tmpl).Funcs(functionMap)
 
-	log.Info(functionMap)
-
 	return t.ParseFiles(loadFiles...)
 }
 

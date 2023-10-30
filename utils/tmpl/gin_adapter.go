@@ -27,7 +27,6 @@ type htmlRender struct {
 // Render (HTML) executes template and writes its result with custom ContentType for response.
 func (r *htmlRender) Render(w http.ResponseWriter) error {
 	r.WriteContentType(w)
-
 	return render(r.Name, r.Data, w)
 }
 

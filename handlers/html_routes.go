@@ -6,20 +6,8 @@ func Index(c *gin.Context) {
 	c.HTML(200, "routes/index.tmpl", "")
 }
 
-func Bookmarks(c *gin.Context) {
-	c.HTML(200, "routes/bookmarks/index.tmpl", "")
-}
-
 func Watch(c *gin.Context) {
-	c.HTML(200, "routes/bookmarks/index.tmpl", "")
-}
-
-func Search(c *gin.Context) {
-	c.HTML(200, "routes/index.tmpl", "")
-}
-
-func Videos(c *gin.Context) {
-	c.HTML(200, "routes/videos/index.tmpl", "")
+	c.HTML(200, "routes/watch/index.tmpl", gin.H{"id": c.Param("video")})
 }
 
 func NotFound(c *gin.Context) {
