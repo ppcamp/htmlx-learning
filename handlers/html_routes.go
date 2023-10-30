@@ -3,11 +3,13 @@ package handlers
 import "github.com/gin-gonic/gin"
 
 func Index(c *gin.Context) {
-	c.HTML(200, "routes/index.tmpl", "")
+	data := MapBase(c)
+	c.HTML(200, "routes/index.tmpl", data)
 }
 
 func Watch(c *gin.Context) {
-	c.HTML(200, "routes/watch/index.tmpl", gin.H{"id": c.Param("video")})
+	data := MapBase(c)
+	c.HTML(200, "routes/watch/index.tmpl", data)
 }
 
 func NotFound(c *gin.Context) {
