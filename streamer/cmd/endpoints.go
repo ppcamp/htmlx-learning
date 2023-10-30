@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/contrib/gzip"
 	"github.com/gin-gonic/gin"
+	common "github.com/ppcamp/movies-to-watch/common/middlewares"
 	"github.com/ppcamp/movies-to-watch/streamer/config"
 	"github.com/ppcamp/movies-to-watch/streamer/handlers"
 	log "github.com/sirupsen/logrus"
@@ -30,4 +31,5 @@ func middlewares(m *gin.Engine) {
 	m.Use(gin.Logger())
 	m.Use(gin.Recovery())
 	m.Use(gzip.Gzip(gzip.BestCompression))
+	m.Use(common.CORSMiddleware())
 }

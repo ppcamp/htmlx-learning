@@ -13,11 +13,11 @@
     {{block "styles" .}}{{end}}
 </head>
 
-<body>
+<body id="body">
     {{template "components/header" .}}
     {{template "content" .}}
     {{template "components/footer" .}}
-    {{template "scripts" .}}
+    {{block "scripts" .}}{{end}}
 </body>
 </html>
 {{end}}

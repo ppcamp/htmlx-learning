@@ -9,28 +9,52 @@
 
 {{define "scripts"}}
     {{ $videoID := .Params.video }}
-    {{ $videoURL := printf "http://localhost:8081/playlist/%s-playlist.m3u8" $videoID }}
+    {{ $videoURL := printf "http://localhost:8081/playlists/%s-playlist.m3u8" $videoID }}
 
-    <div>A</div>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
     <script>
-        console.log("Running");
+        const url = "http://localhost:8081\/playlists\/football-playlist.m3u8";
+        const video = document.getElementById('player');
 
+        console.log("Running", url);
+        console.log("Running", video);
+        console.log("HLS", Hls.isSupported());
         if (Hls.isSupported()) {
-            var video = document.getElementById('video');
-            var hls = new Hls();
-            hls.loadSource('{{$videoURL}}');
+            console.log("HLS Supported");
+
+            const hls = new Hls();
+            hls.loadSource(url);
+            console.log("HLS Loading");
             hls.attachMedia(video);
+            console.log("Attaching");
+
             hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                video.play();
+                console.log("Manifest parsed");
             });
-        }
-        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = '{{$videoURL}}';
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = url;
             video.addEventListener('loadedmetadata', function () {
                 video.play();
             });
+        } else {
+            console.warn("Your browser doesn't support HTTP Live Streaming");
+        }
+    </script>
+
+    <script>
+        let lights = false;
+        const body = document.getElementById('body');
+        const btnid = document.getElementById('id');
+
+        function toggleLights() {
+            lights = !lights;
+            if (lights) {
+                body.classList.add('lights-off');
+                btnid.classList.add('lights-off');
+            } else {
+                body.classList.remove('lights-off');
+                btnid.classList.remove('lights-off');
+            }
         }
     </script>
 {{end}}
@@ -42,5 +66,17 @@
     <div class="max-w-screen-xl h-auto flex flex-wrap items-center justify-between mx-auto p-4">
         <video id="video" controls></video>
     </div> */}}
-    <video id="player"></video>
+    <div class="flex w-full justify-center">
+        <video id="player" class="pt-10" controls></video>
+    </div>
+
+    <div class="w-full flex justify-end p-10">
+        <button type="button"
+                class="button-common"
+                id="lights"
+                onclick="toggleLights()">
+            Lights off
+        </button>
+    </div>
+
 {{end}}
