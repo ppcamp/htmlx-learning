@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/Athunlal/Go-video-streaming-server-hls/blob/master/football.mp4
+HostUrl=https://raw.githubusercontent.com/Athunlal/Go-video-streaming-server-hls/master/football.mp4
