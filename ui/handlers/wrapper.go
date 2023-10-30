@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/ppcamp/htmlx-movies-to-watch/utils/files"
+	"github.com/ppcamp/movies-to-watch/common/files"
 )
 
 func MapBase(c *gin.Context) gin.H {

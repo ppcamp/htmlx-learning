@@ -7,13 +7,13 @@ import (
 )
 
 func SetupLog() error {
-	lvl, err := logrus.ParseLevel(viper.GetString("log.level"))
+	lvl, err := logrus.ParseLevel(viper.GetString("common.log.level"))
 	if err != nil {
 		return err
 	}
 
 	logrus.SetLevel(lvl)
-	gin.SetMode(viper.GetString("gin.mode"))
+	gin.SetMode(viper.GetString("common.gin.mode"))
 
 	return nil
 }

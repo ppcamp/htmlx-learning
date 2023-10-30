@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/ppcamp/htmlx-movies-to-watch/config"
-	"github.com/ppcamp/htmlx-movies-to-watch/utils/files"
+	"github.com/ppcamp/movies-to-watch/common/files"
+	"github.com/ppcamp/movies-to-watch/ui/config"
 	log "github.com/sirupsen/logrus"
 )
 

@@ -3,9 +3,9 @@ package main
 import (
 	"github.com/gin-gonic/contrib/gzip"
 	"github.com/gin-gonic/gin"
-	"github.com/ppcamp/htmlx-movies-to-watch/config"
-	"github.com/ppcamp/htmlx-movies-to-watch/handlers"
-	"github.com/ppcamp/htmlx-movies-to-watch/utils/tmpl"
+	"github.com/ppcamp/movies-to-watch/ui/config"
+	"github.com/ppcamp/movies-to-watch/ui/handlers"
+	"github.com/ppcamp/movies-to-watch/ui/utils/tmpl"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -32,6 +32,7 @@ func routes(m *gin.Engine) {
 
 	htmlx := m.Group("/htmlx")
 	htmlx.GET("/videos", handlers.HtmlxVideos)
+	htmlx.GET("/todos", handlers.HtmlxTodos)
 }
 
 func middlewares(m *gin.Engine) {

@@ -7,19 +7,33 @@
 
 {{define "content"}}
 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 container">
+    {{/* Todos */}}
+    <div id="todos-content" class="grid grid-cols-2 gap-4 w-full"></div>
+    <div class="container w-96">
+        <button
+            type="button"
+            class="button-common"
+            hx-get="/htmlx/todos"
+            hx-target="#todos-content"
+            hx-swap="swap"
+        >
+            {{template "components/loader" map "boxCSS" "htmx-indicator" "loadCSS" "w-4 h-4"}}
+            <span class="btn-label-loader">
+                Load Todos
+            </span>
+        </button>
+    </div>
 
-    {{template "htmlx/todos"}}
-
+    {{/* section split */}}
     <div class="inline-flex items-center justify-center w-full">
         <hr class="w-full h-px my-8 bg-gray-900 border-0 ">
         <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2">
-            Content
+            Videos
         </span>
     </div>
 
-    <div id="content" class="grid grid-cols-2 gap-4 w-full">
-        {{template "htmlx/videos"}}
-    </div>
+    {{/* Videos */}}
+    <div id="content" class="grid grid-cols-2 gap-4 w-full"></div>
     <div class="container w-96">
         <button
             type="button"
@@ -30,7 +44,7 @@
         >
             {{template "components/loader" map "boxCSS" "htmx-indicator" "loadCSS" "w-4 h-4"}}
             <span class="btn-label-loader">
-                Load more
+                Load videos
             </span>
         </button>
     </div>

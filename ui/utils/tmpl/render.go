@@ -5,7 +5,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/ppcamp/htmlx-movies-to-watch/config"
+	"github.com/ppcamp/movies-to-watch/ui/config"
 	log "github.com/sirupsen/logrus"
 )
 

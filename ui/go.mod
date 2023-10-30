@@ -1,4 +1,4 @@
-module github.com/ppcamp/htmlx-movies-to-watch
+module github.com/ppcamp/movies-to-watch/ui
 
 go 1.20
 
