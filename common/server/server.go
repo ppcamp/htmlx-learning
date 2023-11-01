@@ -12,12 +12,15 @@ import (
 // serve starts the server and logs any error returned by the server.
 // It blocks until the server is closed, thus, you should call it in a goroutine.
 func Serve(ctx context.Context, s *http.Server, port string) {
-	log.Infof("Server listening at http://localhost:%s", port)
-	if err := s.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-		log.WithError(err).Fatal("Fail to start server")
-	}
+	go func() {
+		log.Infof("Server listening at http://localhost:%s", port)
+		if err := s.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
+			log.WithError(err).Fatal("Fail to start server")
+		}
+	}()
 }
 
+// GracefulStop await until the ctx is done and then, stops the server gracefully.
 func GracefulStop(ctx context.Context, s *http.Server, timeout time.Duration) {
 	// await for interrupt signal
 	<-ctx.Done()

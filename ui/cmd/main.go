@@ -38,6 +38,6 @@ func main() {
 		BaseContext: func(_ net.Listener) context.Context { return ctx }, // close inner connections
 	}
 
-	go common.Serve(ctx, s, config.ServerPort())
+	common.Serve(ctx, s, config.ServerPort())
 	common.GracefulStop(ctx, s, commoncfg.WaitTimeout())
 }

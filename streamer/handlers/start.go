@@ -9,7 +9,7 @@ import (
 )
 
 func Stream(c *gin.Context) {
-	playlist := c.Param("name")
+	playlist := c.Param("video")
 
 	if !fileExists("", playlist, config.PlaylistExt()) {
 		c.JSON(404, gin.H{"status": "404", "message": "Not Found. Request to watch it first."})
@@ -23,7 +23,7 @@ func Stream(c *gin.Context) {
 }
 
 func Start(c *gin.Context) {
-	playlist := c.Param("name")
+	playlist := c.Param("video")
 
 	if !fileExists(config.VideosFolder(), playlist, config.VideoFileExt()) {
 		c.JSON(404, gin.H{"status": "404", "message": "Not Found"})

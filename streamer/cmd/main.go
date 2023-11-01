@@ -10,6 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 	commoncfg "github.com/ppcamp/movies-to-watch/common/config"
 	common "github.com/ppcamp/movies-to-watch/common/server"
+	"github.com/ppcamp/movies-to-watch/streamer/cleaner"
 	"github.com/ppcamp/movies-to-watch/streamer/config"
 	log "github.com/sirupsen/logrus"
 )
@@ -38,6 +39,8 @@ func main() {
 		BaseContext: func(_ net.Listener) context.Context { return ctx }, // close inner connections
 	}
 
-	go common.Serve(ctx, s, config.ServerPort())
+	cleaner.Configure(ctx, config.CleanInterval())
+
+	common.Serve(ctx, s, config.ServerPort())
 	common.GracefulStop(ctx, s, commoncfg.WaitTimeout())
 }
