@@ -23,7 +23,7 @@ func routes(m *gin.Engine) {
 
 	m.GET("/start/:name", handlers.Start)
 	m.GET("/stream/:name", handlers.Stream)
-	m.Static("/playlists", config.ServeFolder())
+	m.Static("/playlists", config.PlaylistFolder())
 }
 
 func middlewares(m *gin.Engine) {

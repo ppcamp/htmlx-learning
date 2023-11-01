@@ -11,11 +11,3 @@ func ServerPort() string {
 func ServerAddr() string {
 	return ":" + ServerPort()
 }
-
-func ServeFolder() string {
-	return viper.GetString("streamer.server.serve_folder")
-}
-
-func VideosFolder() string {
-	return viper.GetString("streamer.server.videos_folder")
-}

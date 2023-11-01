@@ -2,48 +2,45 @@ package handlers
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/ppcamp/movies-to-watch/common/files"
-	log "github.com/sirupsen/logrus"
+	"github.com/ppcamp/movies-to-watch/streamer/config"
+	"github.com/ppcamp/movies-to-watch/streamer/ffmpeg"
 )
 
 func Stream(c *gin.Context) {
 	playlist := c.Param("name")
-	if !fileExists(playlist) {
-		// should initialize the executor
-		c.JSON(404, gin.H{"status": "404", "message": "Not Found. Initialize the executor"})
+
+	if !fileExists("", playlist, config.PlaylistExt()) {
+		c.JSON(404, gin.H{"status": "404", "message": "Not Found. Request to watch it first."})
 		return
 	}
 
-	// available to stream
-	c.JSON(200, gin.H{"status": "200", "file": fmt.Sprintf("/playlists/%s-playlist.m3u8", playlist)})
+	c.JSON(200, gin.H{
+		"status": "200",
+		"file":   fmt.Sprintf("/playlists/%s", ffmpeg.DefaultFileName(playlist)),
+	})
 }
 
 func Start(c *gin.Context) {
 	playlist := c.Param("name")
-	if !fileExists(playlist) {
-		// should initialize the executor
+
+	if !fileExists(config.VideosFolder(), playlist, config.VideoFileExt()) {
 		c.JSON(404, gin.H{"status": "404", "message": "Not Found"})
 		return
 	}
 
-	// available to stream
-	c.JSON(200, gin.H{"status": "200", "message": "OK"})
-}
-
-func fileExists(n string) bool {
-	playlists, err := files.GlobSuffix(".m3u8")
-	if err != nil {
-		log.WithError(err).Warn("failed to get playlists")
-		return false
+	if fileExists(config.PlaylistExt(), playlist, config.PlaylistExt()) {
+		c.JSON(200, gin.H{"status": "200", "message": "OK"})
+		return
 	}
 
-	for _, v := range playlists {
-		if strings.Contains(v, n) {
-			return true
-		}
+	q := ffmpeg.DefaultQuery(playlist)
+	exec := ffmpeg.NewExecutor(q)
+	if err := exec.Run(); err != nil {
+		c.JSON(500, gin.H{"status": "500", "message": "Fail to init the executor"})
+		return
 	}
-	return false
+
+	c.JSON(200, gin.H{"status": "200", "message": "Converting"})
 }
